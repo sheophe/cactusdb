@@ -2,16 +2,17 @@
 name = "octomq"
 version = "0.1.0"
 edition = "2021"
-description = "Fast distributed highly available in-memory key/value database with publish-subscribe interface"
+description = "Fast distributed highly available transactional key-value database"
 license = "Apache-2.0"
 
 [lib]
 name = "octomq"
 
 [dependencies]
+clap = { version = "4.1.4", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.8"
-clap = { version = "4.1.4", features = ["derive"] }
+sqlparser = "0.30"
 
 [workspace]
 # See https://github.com/rust-lang/rfcs/blob/master/text/2957-cargo-features2.md

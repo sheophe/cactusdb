@@ -2,9 +2,7 @@ use clap::Parser;
 use octomq::config::{ConfigFormat, LogLevel, OctomqConfig};
 
 #[derive(Parser, Debug)]
-#[command(
-    about = "Fast distributed highly available in-memory key/value database with publish-subscribe interface"
-)]
+#[command(about = "Fast distributed highly available transactional key-value database")]
 struct Args {
     #[arg(short, long, value_name = "FILE", help = "Set the configuration file")]
     config: String,
@@ -49,9 +47,11 @@ struct Args {
     log_file: String,
 
     #[arg(
+        required = false,
         short,
         long,
         value_name = "IP:PORT",
+        default_value = "127.0.0.1:1996",
         help = "Set the WebSocket API address"
     )]
     addr: String,
@@ -60,26 +60,26 @@ struct Args {
         required = false,
         long = "grpc-addr",
         value_name = "IP:PORT",
-        default_value = "",
         help = "Set the gRPC API address",
         long_help = "Set the gRPC API address. If not set, the node will not provide this interface"
     )]
-    grpc_addr: String,
+    grpc_addr: Option<String>,
 
     #[arg(
         required = false,
         long = "sync-addr",
         value_name = "IP:PORT",
-        default_value = "",
         help = "Set the syncronization API address",
         long_help = "Set the syncronization API address for the cluster. If not set, the node will start in standalone mode"
     )]
-    sync_addr: String,
+    sync_addr: Option<String>,
 
     #[arg(
+        required = false,
         short = 's',
         long = "data-dir",
         value_name = "PATH",
+        default_value = "/var/lib/octomq/data",
         help = "Set the directory used to store data"
     )]
     data_dir: String,
@@ -88,16 +88,15 @@ struct Args {
         required = false,
         long,
         value_name = "CAPACITY",
-        default_value = "",
         help = "Set the store capacity",
         long_help = "Set the store capacity to use. If not set, use entire partition"
     )]
-    capacity: String,
+    capacity: Option<String>,
 }
 
 fn main() {
     let args = Args::parse();
     println!("{:#?}", args);
-    let config = OctomqConfig::new(args.config.as_str()).expect("error");
+    let config = OctomqConfig::new(args.config.as_str()).expect("config error");
     println!("{:#?}", config);
 }

@@ -5,13 +5,13 @@ use std::{fs, io};
 
 #[derive(Debug)]
 pub enum ConfigError {
-    IOError(io::Error),
+    IOError(String),
     InvalidFormat(String),
 }
 
 impl From<io::Error> for ConfigError {
     fn from(err: io::Error) -> Self {
-        Self::IOError(err)
+        Self::IOError(err.to_string())
     }
 }
 
