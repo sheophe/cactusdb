@@ -138,11 +138,11 @@ fn main_with_result() -> Result<(), errors::ConfigError> {
     let args = Args::parse();
     if args.config_check {
         println!("{}", check_config(args)?);
-        process::exit(0)
+        return Ok(());
     }
     if args.config_info.is_some() {
         println!("{}", print_config(args)?);
-        process::exit(0)
+        return Ok(());
     }
     let _config = read_config(args)?;
     println!("ok, bye");

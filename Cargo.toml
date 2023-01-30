@@ -14,9 +14,9 @@ serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.8"
 serde_json = "1.0"
 toml = "0.7"
-sqlparser = "0.30"
 thiserror = "1.0"
 rocksdb = "0.19"
+zmq = "0.10"
 
 [workspace]
 # See https://github.com/rust-lang/rfcs/blob/master/text/2957-cargo-features2.md
