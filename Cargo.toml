@@ -2,7 +2,7 @@
 name = "cactusdb"
 version = "0.1.0"
 edition = "2021"
-description = "Fast highly available distributed key-value transactional database and message exchange system for low-bandwidth radio networks"
+description = "Fast highly available distributed transactional key-value/document database and message exchange system for low-bandwidth radio networks"
 license = "Apache-2.0"
 
 [lib]
