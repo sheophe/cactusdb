@@ -1,18 +1,22 @@
 [package]
-name = "octomq"
+name = "cactusdb"
 version = "0.1.0"
 edition = "2021"
-description = "Fast distributed highly available transactional key-value database"
+description = "Fast highly available distributed key-value transactional database and message exchange system for low-bandwidth radio networks"
 license = "Apache-2.0"
 
 [lib]
-name = "octomq"
+name = "cactusdb"
 
 [dependencies]
 clap = { version = "4.1.4", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.8"
+serde_json = "1.0"
+toml = "0.7"
 sqlparser = "0.30"
+thiserror = "1.0"
+rocksdb = "0.19"
 
 [workspace]
 # See https://github.com/rust-lang/rfcs/blob/master/text/2957-cargo-features2.md
@@ -20,10 +24,10 @@ sqlparser = "0.30"
 # will _not_ propagate the feature `x` into `cmd`'s direct dependencies.
 resolver = "2"
 members = [
-  "cmd/octomq-cli",
-  "cmd/octomq-server",
+  "cmd/cactusdb-cli",
+  "cmd/cactusdb-server",
 ]
-default-members = ["cmd/octomq-server", "cmd/octomq-cli"]
+default-members = ["cmd/cactusdb-server", "cmd/cactusdb-cli"]
 
 [workspace.dependencies]
-octomq = { path = ".", default-features = false }
+cactusdb = { path = ".", default-features = false }
