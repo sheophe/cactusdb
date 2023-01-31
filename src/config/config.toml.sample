@@ -5,20 +5,20 @@
 ## The unit is millicpu but for now this config is approximate and soft limit.
 # foreground-cpu-time: 0
 
-## Write bandwidth limitation for this TiKV instance, default value is 0 which means unlimited.
+## Write bandwidth limitation for this CactusDB instance, default value is 0 which means unlimited.
 # foreground-write-bandwidth = "0B"
 
-## Read bandwidth limitation for this TiKV instance, default value is 0 which means unlimited.
+## Read bandwidth limitation for this CactusDB instance, default value is 0 which means unlimited.
 # foreground-read-bandwidth = "0B"
 
 ## CPU quota for these background requests can use, default value is 0, it means unlimited.
 ## The unit is millicpu but for now this config is approximate and soft limit.
 # background-cpu-time: 0
 
-## Write bandwidth limitation for backgroud request for this TiKV instance, default value is 0 which means unlimited.
+## Write bandwidth limitation for backgroud request for this CactusDB instance, default value is 0 which means unlimited.
 # background-write-bandwidth = "0B"
 
-## Read bandwidth limitation for background request for this TiKV instance, default value is 0 which means unlimited.
+## Read bandwidth limitation for background request for this CactusDB instance, default value is 0 which means unlimited.
 # background-read-bandwidth = "0B"
 
 ## Limitation of max delay duration, default value is 0 which means unlimited.
@@ -78,7 +78,7 @@ cluster-addr = "244.0.0.1:45009"
 # cluster-stream-initial-window-size = "2MB"
 
 ## Time to wait before sending out a ping to check if server is still alive.
-## This is only for communications between TiKV instances.
+## This is only for communications between CactusDB instances.
 # cluster-keepalive-time = "10s"
 
 ## Time to wait before closing the connection without receiving KeepAlive ping Ack.

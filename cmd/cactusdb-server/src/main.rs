@@ -134,27 +134,25 @@ fn print_config(args: Args) -> Result<String, errors::ConfigError> {
     config.to_formatted_string(format)
 }
 
-fn main_with_result() -> Result<(), errors::ConfigError> {
+fn load_config() -> Result<CactusDbConfig, errors::ConfigError> {
     let args = Args::parse();
     if args.config_check {
         println!("{}", check_config(args)?);
-        return Ok(());
+        process::exit(0);
     }
     if args.config_info.is_some() {
         println!("{}", print_config(args)?);
-        return Ok(());
+        process::exit(0);
     }
-    let _config = read_config(args)?;
-    println!("ok, bye");
-    Ok(())
+    read_config(args)
 }
 
 fn main() {
-    match main_with_result() {
-        Ok(_) => process::exit(0),
+    let _config = match load_config() {
+        Ok(config) => config,
         Err(error) => {
             println!("{}", error.to_string());
             process::exit(1)
         }
-    }
+    };
 }
