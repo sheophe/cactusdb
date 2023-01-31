@@ -4,7 +4,7 @@ use std::process;
 
 #[derive(Parser, Debug)]
 #[command(
-    about = "Fast highly available distributed transactional key-value/document database and message exchange system for low-bandwidth radio networks"
+    about = "Fast highly available distributed transactional key-value database and message exchange system for low-bandwidth radio networks"
 )]
 
 struct Args {
