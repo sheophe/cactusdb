@@ -11,5 +11,5 @@ Users connect to CactusDB using WebSockets, HTTP or gRPC interfaces. WebSockets 
 ## Acknowledgements
 
 * Thanks [TiKV](https://github.com/tikv/tikv) for inspiring a large portion of the codebase (transactions, caching, snapshots, etc)
-* Thanks [RocksDB](https://github.com/facebook/rocksdb) for the powerful database engine
-* Thanks [Aeron](https://github.com/real-logic/aeron) for the reliable UDP multicast transport
+* Thanks [RocksDB](https://github.com/facebook/rocksdb) for the powerful persisten key-value store
+* Thanks [Aeron](https://github.com/real-logic/aeron) for the efficient reliable UDP multicast transport
