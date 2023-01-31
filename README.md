@@ -10,6 +10,6 @@ Users connect to CactusDB using WebSockets or HTTP interfaces. WebSockets interf
 
 ## Acknowledgements
 
-* Thanks [TiKV](https://github.com/tikv/tikv) for inspiring a large part of the codebase
+* Thanks [TiKV](https://github.com/tikv/tikv) for inspiring a large portion of the codebase
 * Thanks [RocksDB](https://github.com/facebook/rocksdb) for the powerful database engine
 * Thanks [Aeron](https://github.com/real-logic/aeron) for the reliable UDP multicast transport
