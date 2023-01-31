@@ -131,7 +131,7 @@ pub struct DataDir(String);
 
 impl Default for DataDir {
     fn default() -> Self {
-        Self("/var/lib/cactusdb/data".to_string())
+        Self("/usr/local/var/cactusdb".to_string())
     }
 }
 
