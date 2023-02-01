@@ -58,7 +58,7 @@ addr = "127.0.0.1:20160"
 
 ## Address for node syncronization using gRPC protocol.
 ## If not set, the node will work in standalone mode.
-cluster-addr = "244.0.0.1:45009"
+# cluster-addr = "244.0.0.1:45009"
 
 ## Compression type for gRPC channel: none, deflate or gzip.
 # cluster-compression-type = "none"

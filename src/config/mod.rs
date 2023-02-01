@@ -4,11 +4,7 @@ use clap::ValueEnum;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use serde_yaml;
-use std::{
-    fs,
-    net::{AddrParseError, SocketAddr},
-    str::FromStr,
-};
+use std::{fs, net::SocketAddr};
 use toml;
 
 #[derive(ValueEnum, Clone, Copy, Debug, Deserialize)]
@@ -49,28 +45,40 @@ impl Default for LogFormat {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct MaxSize(pub usize);
-
-impl Default for MaxSize {
-    fn default() -> Self {
-        Self(4096 * 1024 * 1024 * 1024)
-    }
-}
-
-#[derive(Default, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "kebab-case")]
 pub struct LogFile {
-    #[serde(default)]
+    #[serde(default = "LogFile::default_filename")]
     pub filename: String,
 
-    #[serde(default)]
-    pub max_size: MaxSize,
+    #[serde(default = "LogFile::default_max_size")]
+    pub max_size: usize,
 
     #[serde(default)]
     pub max_days: u64,
 
     #[serde(default)]
     pub max_backups: u64,
+}
+
+impl LogFile {
+    pub fn default_filename() -> String {
+        "stderr".to_string()
+    }
+
+    pub fn default_max_size() -> usize {
+        4 * 1024 * 1024
+    }
+}
+
+impl Default for LogFile {
+    fn default() -> Self {
+        Self {
+            filename: Self::default_filename(),
+            max_size: Self::default_max_size(),
+            max_days: 0,
+            max_backups: 0,
+        }
+    }
 }
 
 #[derive(Default, Debug, Serialize, Deserialize)]
@@ -100,52 +108,49 @@ pub struct LogConfig {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Addr(pub SocketAddr);
-
-impl FromStr for Addr {
-    type Err = AddrParseError;
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let addr = SocketAddr::from_str(s)?;
-        Ok(Self(addr))
-    }
-}
-
-impl Default for Addr {
-    fn default() -> Self {
-        Self("127.0.0.1:1996".parse().unwrap())
-    }
-}
-
-#[derive(Default, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "kebab-case")]
 pub struct ServerConfig {
-    #[serde(default)]
-    pub addr: Addr,
+    #[serde(default = "ServerConfig::default_addr")]
+    pub addr: SocketAddr,
 
     #[serde(default)]
     pub cluster_addr: Option<SocketAddr>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
-pub struct DataDir(String);
+impl ServerConfig {
+    pub fn default_addr() -> SocketAddr {
+        "127.0.0.1:1996".parse().unwrap()
+    }
+}
 
-impl Default for DataDir {
+impl Default for ServerConfig {
     fn default() -> Self {
-        Self("/usr/local/var/cactusdb".to_string())
+        Self {
+            addr: Self::default_addr(),
+            cluster_addr: None,
+        }
     }
 }
 
-impl ToString for DataDir {
-    fn to_string(&self) -> String {
-        self.0.clone()
-    }
-}
-
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "kebab-case")]
 pub struct StorageConfig {
-    #[serde(default)]
-    pub data_dir: DataDir,
+    #[serde(default = "StorageConfig::default_data_dir")]
+    pub data_dir: String,
+}
+
+impl StorageConfig {
+    pub fn default_data_dir() -> String {
+        "/usr/local/var/cactusdb".to_string()
+    }
+}
+
+impl Default for StorageConfig {
+    fn default() -> Self {
+        Self {
+            data_dir: Self::default_data_dir(),
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
