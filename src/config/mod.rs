@@ -61,11 +61,11 @@ pub struct LogFile {
 }
 
 impl LogFile {
-    pub fn default_filename() -> String {
+    fn default_filename() -> String {
         "stderr".to_string()
     }
 
-    pub fn default_max_size() -> usize {
+    fn default_max_size() -> usize {
         4 * 1024 * 1024
     }
 }
@@ -118,7 +118,7 @@ pub struct ServerConfig {
 }
 
 impl ServerConfig {
-    pub fn default_addr() -> SocketAddr {
+    fn default_addr() -> SocketAddr {
         "127.0.0.1:1996".parse().unwrap()
     }
 }
@@ -140,7 +140,7 @@ pub struct StorageConfig {
 }
 
 impl StorageConfig {
-    pub fn default_data_dir() -> String {
+    fn default_data_dir() -> String {
         "/usr/local/var/cactusdb".to_string()
     }
 }
