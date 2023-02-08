@@ -8,6 +8,9 @@ Unlike many other NoSQL databases, CactusDB implements replication and distribut
 
 Users connect to CactusDB using WebSockets, HTTP or gRPC interfaces. WebSockets interface provides pub-sub functionatity, while HTTP and gRPC interfaces are built on a more classical set-get paradigm. Because of this interface flexibility CactusDB can be configured to function purely as a message pub-sub system (user can configure database to store all the data in RAM instead of disk), or as a reliable brokerless message queue (if database is configured to persist on disk), or as a full-fledged key-value database (with HTTP interface for GET and PUT operations).
 
+## Status
+This project is currently in the earliest stages of development and does not actually work. This status message will be updated regularely until the first release. Afterwards, release changes will be described in changelogs.
+
 ## Acknowledgements
 
 * Thanks [TiKV](https://github.com/tikv/tikv) for inspiring a large portion of the database-related code (transactions, caching, snapshots, etc)
